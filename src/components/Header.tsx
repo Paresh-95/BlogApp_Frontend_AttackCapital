@@ -51,7 +51,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`,{ withCredentials: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`,{ withCredentials: true })
       setIsLoggedIn(false)
       router.push('/')
     } catch (error) {
