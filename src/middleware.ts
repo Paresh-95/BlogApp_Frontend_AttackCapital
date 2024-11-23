@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
-  const isAuthPath = path === '/login' || path === '/signup'
+  const isAuthPath = path === '/login' || path === '/sign-up'
   const isHomePath = path === '/'
 
   const token = request.cookies.get('token')?.value || ''
