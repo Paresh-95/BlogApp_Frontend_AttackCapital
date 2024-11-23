@@ -72,7 +72,7 @@ export default function Login() {
               Login to your account
             </CardTitle>
             <div className="flex justify-center items-center mt-2">
-              <span className="text-lg text-gray-400">Don&apost have an account?</span>
+              <span className="text-lg text-gray-400">Don't have an account?</span>
               <Link href="/sign-up" className="ml-1 text-yellow-400 hover:underline">
                 Sign Up
               </Link>
@@ -113,12 +113,6 @@ export default function Login() {
                   className="bg-black border-gray-700 w-[100%] text-white placeholder-white"
                   required
                 />
-                <Link
-                  href="/forgot-password"
-                  className="text-sm text-gray-400 hover:text-white float-right"
-                >
-                  Forgot Password?
-                </Link>
               </div>
               <Button
                 type="submit"
