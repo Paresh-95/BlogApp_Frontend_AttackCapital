@@ -30,11 +30,12 @@ export default function Login() {
 
   const login = async (formData:LoginForm) => {
     try {
-      await axios.post(
+      const response=await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/login`,
         formData,
         { withCredentials: true }
       );
+      localStorage.setItem('token',response.data.token);
       toast({
         title: "User Logged In Successfully",
         description: "Welcome back!",
