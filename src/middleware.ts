@@ -3,8 +3,8 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
-  const token = localStorage.getItem('token') || '' // Retrieve token from cookies
-  console.log(token)
+  const token = request.cookies.get('token')?.value || '';
+  console.log(token);
 
   const isAuthPath = path === '/login' || path === '/sign-up' // Authentication routes
   const isDashboardPath = path.startsWith('/dashboard') // Dashboard and nested routes
