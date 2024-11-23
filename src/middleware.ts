@@ -4,10 +4,11 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
   const token = request.cookies.get('token')?.value || '' // Retrieve token from cookies
+  console.log(token)
 
   const isAuthPath = path === '/login' || path === '/sign-up' // Authentication routes
   const isDashboardPath = path.startsWith('/dashboard') // Dashboard and nested routes
-  const isPublicPath = !isDashboardPath && !isAuthPath // Other public routes
+
 
   // If no token
   if (!token) {
