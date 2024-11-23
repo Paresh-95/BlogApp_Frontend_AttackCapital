@@ -152,7 +152,7 @@ export default function CreatePost() {
                       menubar: false,
                       plugins: ["link", "lists", "code", "image", "fullscreen"],
                       toolbar:
-                        "undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image code fullscreen",
+                       "undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography",
                       content_style: `
                         body {
                           background-color: #1a1f29;
