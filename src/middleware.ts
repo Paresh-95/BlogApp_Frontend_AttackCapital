@@ -3,33 +3,35 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
-  const token = request.cookies.get('token') 
+  const token = request.cookies.get('token')?.value || '' // Retrieve the token from cookies
 
-  console.log('Request Path:', path)
-  console.log('Token:', token) 
+  const isAuthPath = path === '/login' || path === '/signup' // Authentication routes
+  const isDashboardPath = path === '/dashboard' // Protected route: dashboard
+  const isPublicPath = !isDashboardPath && !isAuthPath // Any other public route
 
-  const isAuthPath = path === '/login' || path === '/sign-up'  
-  const isHomePath = path === '/'  
-  const isDashboardPath = path === '/dashboard'  
-
-
-  if (!isAuthPath && !isHomePath && !token) {
-    console.log('Redirecting to login because no token is found')
-    return NextResponse.redirect(new URL('/login', request.url))
+  // If no token
+  if (!token) {
+    if (isDashboardPath) {
+      // Redirect to login if trying to access dashboard without token
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    // Allow access to public and auth routes if no token
+    return NextResponse.next()
   }
 
-  
-  if (isAuthPath && token) {
-    console.log('Redirecting to dashboard because token exists')
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+  // If token exists
+  if (token) {
+    if (isAuthPath) {
+      // Redirect to dashboard if trying to access login or signup with token
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+    // Allow access to dashboard and public routes
+    return NextResponse.next()
   }
-
-  
-  return NextResponse.next()
 }
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',  
+    '/((?!api|_next/static|_next/image|favicon.ico).*)', // Apply middleware to all paths except API, static files, and favicon
   ],
 }
