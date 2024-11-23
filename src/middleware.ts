@@ -3,16 +3,16 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
-  const token = request.cookies.get('token')?.value || '' // Retrieve the token from cookies
+  const token = request.cookies.get('token')?.value || '' // Retrieve token from cookies
 
-  const isAuthPath = path === '/login' || path === '/signup' // Authentication routes
-  const isDashboardPath = path === '/dashboard' // Protected route: dashboard
-  const isPublicPath = !isDashboardPath && !isAuthPath // Any other public route
+  const isAuthPath = path === '/login' || path === '/sign-up' // Authentication routes
+  const isDashboardPath = path.startsWith('/dashboard') // Dashboard and nested routes
+  const isPublicPath = !isDashboardPath && !isAuthPath // Other public routes
 
   // If no token
   if (!token) {
     if (isDashboardPath) {
-      // Redirect to login if trying to access dashboard without token
+      // Redirect to login if trying to access dashboard or its nested routes
       return NextResponse.redirect(new URL('/login', request.url))
     }
     // Allow access to public and auth routes if no token
