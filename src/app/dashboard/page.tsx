@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -17,17 +18,16 @@ import { Button } from "@/components/ui/button";
 import { Plus, MoreVertical, Trash } from "lucide-react";
 import axios, { AxiosError } from "axios";
 import { useToast } from "@/hooks/use-toast";
-
-interface AxiosErrorResponse {
-  message?: string;
-}
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+interface AxiosErrorResponse {
+  message?: string;
+}
 
 interface Post {
   _id: string;
@@ -40,7 +40,7 @@ interface Post {
   thumbnail: string;
 }
 
-export default function UserDashboard() {
+function UserDashboardContent() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const router = useRouter();
@@ -75,7 +75,6 @@ export default function UserDashboard() {
 
       if (response.data.success) {
         setBlogs(response.data.blogs);
-      } else {
       }
       setLoading(false);
     } catch (error: unknown) {
@@ -243,5 +242,13 @@ export default function UserDashboard() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function UserDashboard() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UserDashboardContent />
+    </Suspense>
   );
 }

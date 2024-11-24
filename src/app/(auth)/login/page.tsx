@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect , Suspense} from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ interface AxiosErrorResponse {
   message?: string;
 }
 
-export default function Login() {
+const LoginPage = () =>{
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const router = useRouter();
@@ -155,3 +155,14 @@ export default function Login() {
     </div>
   );
 }
+
+
+const LoginPageWithSuspense = () => {
+  return (
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
+      <LoginPage />
+    </Suspense>
+  );
+}
+
+export default LoginPageWithSuspense;
