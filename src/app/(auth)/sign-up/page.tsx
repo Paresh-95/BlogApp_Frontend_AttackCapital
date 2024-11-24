@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent,CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
-
+import { useSearchParams } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
@@ -22,6 +22,7 @@ interface AxiosErrorResponse {
 
 
 export default function Register() {
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const router = useRouter();
   const [name, setName] = useState('');
@@ -72,6 +73,17 @@ export default function Register() {
     const formData = { name, email, password };
     register(formData);
   };
+
+  useEffect(() => {
+    const reason = searchParams.get('reason');
+
+    if (reason === 'already_authenticated') {
+      toast({
+        title: 'Already Logged In',
+        description: 'You are already authenticated. Redirecting to your dashboard.',
+      });
+    }
+  }, [searchParams, toast]);
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">

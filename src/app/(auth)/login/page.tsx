@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from 'next/navigation';
+
 import {
   Card,
   CardContent,
-
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,6 +24,7 @@ type LoginForm = {
 }
 
 export default function Login() {
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -60,6 +62,19 @@ export default function Login() {
     };
     login(formData);
   };
+
+  useEffect(() => {
+    const reason = searchParams.get('reason');
+
+    if (reason === 'unauthorized') {
+      toast({
+        title: 'Unauthorized Access',
+        description: 'Please log in to access the dashboard.',
+      });
+    }
+  }, [searchParams, toast]);
+
+
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
