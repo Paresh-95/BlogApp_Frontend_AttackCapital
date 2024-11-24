@@ -145,7 +145,7 @@ export default function CreatePost() {
                         accept="image/*"
                         className="bg-black border-0 text-white placeholder-gray-500 w-full hidden"
                         required
-                        onError={(e) => {
+                        onError={() => {
                           toast({
                             variant: "destructive",
                             title: "File Upload Error",
