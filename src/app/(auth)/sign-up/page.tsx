@@ -16,6 +16,7 @@ type RegisterFormData = {
   email: string;
   password: string;
 };
+
 interface AxiosErrorResponse {
   message?: string;
 }
@@ -41,6 +42,15 @@ const RegisterPage = () => {
         description: response.data.message || 'Your account has been created!',
         duration: 3000,
       });
+
+      // Save the token to localStorage after successful registration
+      const token = response.data.token; // Adjust this if your API returns the token with a different key
+      if (token) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('authToken', token); // Save token to localStorage
+        }
+      }
+
       router.push('/dashboard');
     } catch (error: unknown) {
       const axiosError = error as AxiosError<AxiosErrorResponse>;
@@ -166,7 +176,6 @@ const RegisterPage = () => {
     </div>
   );
 };
-
 
 const RegisterPageWithSuspense = () => (
   <Suspense fallback={<div>Loading...</div>}>
