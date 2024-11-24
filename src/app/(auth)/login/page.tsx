@@ -73,7 +73,7 @@ export default function Login() {
             </CardTitle>
             <div className="flex justify-center items-center mt-2">
               <span className="text-lg text-gray-400">Dont have an account?</span>
-              <Link href="/sign-up" className="ml-1 text-yellow-400 hover:underline">
+              <Link href="/login" className="ml-1 text-yellow-400 hover:underline">
                 Sign Up
               </Link>
             </div>
