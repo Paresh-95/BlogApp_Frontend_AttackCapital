@@ -1,10 +1,10 @@
 'use client';
 
-import { useState,useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent,CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
 import { useSearchParams } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
@@ -20,8 +20,7 @@ interface AxiosErrorResponse {
   message?: string;
 }
 
-
-export default function Register() {
+const RegisterPage = () => {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const router = useRouter();
@@ -43,10 +42,10 @@ export default function Register() {
         duration: 3000,
       });
       router.push('/dashboard');
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       const axiosError = error as AxiosError<AxiosErrorResponse>;
       const errorMessage =
-        axiosError.response?.data?.message || 'An error occurred during Regitration.';
+        axiosError.response?.data?.message || 'An error occurred during Registration.';
       console.error('Registration Error:', errorMessage);
       toast({
         variant: 'destructive',
@@ -56,7 +55,6 @@ export default function Register() {
       });
     }
   };
-  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -167,4 +165,13 @@ export default function Register() {
       </main>
     </div>
   );
-}
+};
+
+
+const RegisterPageWithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <RegisterPage />
+  </Suspense>
+);
+
+export default RegisterPageWithSuspense;
