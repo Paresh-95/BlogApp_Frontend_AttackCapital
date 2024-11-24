@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Header from '@/components/Header';
@@ -161,7 +162,8 @@ export default function UserDashboard() {
         <div>
           <h3 className="text-2xl sm:text-3xl font-semibold mb-6">Your Posts</h3>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((post) => (
+            {blogs.map((post,idx) => (
+              <Link key={idx} href={`/posts/${post._id}`} className="group">
               <Card key={post._id} className="h-full bg-black border-gray-800 overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image
@@ -201,6 +203,14 @@ export default function UserDashboard() {
                   <p className="text-sm text-gray-400">By {post.author.name}</p>
                 </CardFooter>
               </Card>
+              
+              
+              
+              
+              
+              </Link>
+              
+            
             ))}
           </div>
         </div>
