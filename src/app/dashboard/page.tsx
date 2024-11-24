@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
-import { Plus, MoreVertical, Edit, Trash } from 'lucide-react';
+import { Plus, MoreVertical, Trash } from 'lucide-react';
 import axios, { AxiosError } from 'axios';
 import { useToast } from '@/hooks/use-toast';
 
@@ -115,12 +115,6 @@ export default function UserDashboard() {
     }
   };
   
-
-  const handleEdit = (postId: string) => {
-    router.push(`/dashboard/edit-blog/${postId}`);
-  };
-
- 
 
   useEffect(() => {
     fetchUser();
