@@ -20,6 +20,7 @@ const Editor = dynamic(() => import("@tinymce/tinymce-react").then((mod) => mod.
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
+  const [description,setDescription] = useState("")
   const [content, setContent] = useState("");
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const router = useRouter();
@@ -43,6 +44,7 @@ export default function CreatePost() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("description",description)
     if (thumbnail) formData.append("thumbnail", thumbnail);
 
     try {
@@ -108,11 +110,11 @@ export default function CreatePost() {
                       Description (Preview)
                     </label>
                     <Input
-                      id="title"
+                      id="description"
                       type="text"
-                      placeholder="Enter post title"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
+                      placeholder="Enter post description in short"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                       className="bg-black border-gray-700 text-white placeholder-gray-500 w-full"
                       required
                     />
@@ -182,9 +184,9 @@ export default function CreatePost() {
                       height: 600,
                       width: "100%",
                       menubar: false,
-                      plugins: ["link", "lists", "code", "image", "fullscreen"],
+                      plugins: ["fullscreen","link", "lists", "code", "image", ],
                       toolbar:
-                       "undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography",
+                       " fullscreen undo redo spellcheckdialog  | blocks fontfamily fontsize | bold italic underline forecolor backcolor  | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography ",
                       content_style: `
                         body {
                           background-color: #1a1f29;
