@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FaPaperclip } from "react-icons/fa";
 
-// Dynamically import TinyMCE Editor
+
 // @ts-expect-error: Dynamic import may cause type issues
 const Editor = dynamic(() => import("@tinymce/tinymce-react").then((mod) => mod.Editor), {
   ssr: false,
