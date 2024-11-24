@@ -204,7 +204,6 @@ export default function UserDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div
-                    className="text-gray-300 line-clamp-3 text-sm"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
                 </CardContent>
