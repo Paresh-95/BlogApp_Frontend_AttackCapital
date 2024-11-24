@@ -19,6 +19,7 @@ interface Post {
   _id: string;
   title: string;
   content: string;
+  description:string,
   author: { _id: string; name: string };
   createdAt: Date;
   thumbnail: string;
@@ -139,8 +140,10 @@ export default function Home() {
                 <CardContent>
                   <div
                     className="text-sm sm:text-base text-gray-300 line-clamp-2"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                  />
+                  >
+                  {post.description}
+
+                  </div>
                 </CardContent>
               </Card>
             </Link>
