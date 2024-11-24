@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { FaPaperclip } from "react-icons/fa";
+import { FaPaperclip ,FaImage} from "react-icons/fa";
 
 
 // @ts-expect-error: Dynamic import may cause type issues
@@ -77,7 +77,7 @@ export default function CreatePost() {
             <form onSubmit={handleSubmit} className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div className="col-span-1 md:col-span-2 flex flex-col justify-center space-y-6 h-full">
-                  <div className="space-y-3 w-4/5 mx-auto">
+                  <div className="space-y-3 w-4/5 mx-auto ">
                     <CardHeader className="text-center">
                       <CardTitle className="text-5xl font-bold">
                         Create a New Blog Post
@@ -99,6 +99,24 @@ export default function CreatePost() {
                       required
                     />
                   </div>
+                  
+                  <div className="space-y-2 w-4/5 mx-auto">
+                  <label
+                      htmlFor="title"
+                      className="text-lg font-medium leading-none"
+                    >
+                      Description (Preview)
+                    </label>
+                    <Input
+                      id="title"
+                      type="text"
+                      placeholder="Enter post title"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="bg-black border-gray-700 text-white placeholder-gray-500 w-full"
+                      required
+                    />
+                    </div>
 
                   <div className="space-y-2 w-4/5 mx-auto">
                     <label
@@ -113,17 +131,31 @@ export default function CreatePost() {
                         document.getElementById("thumbnail")?.click()
                       }
                     >
-                      <FaPaperclip className="h-6 w-6 text-yellow-400 mr-2" />
+                      {thumbnail ? (
+                        <FaImage className="h-6 w-6 text-yellow-400 mr-2" />
+                      ) : (
+                        <FaPaperclip className="h-6 w-6 text-yellow-400 mr-2" />
+                      )}
                       <Input
                         id="thumbnail"
                         type="file"
                         onChange={(e) =>
                           setThumbnail(e.target.files?.[0] || null)
                         }
+                        accept="image/*"
                         className="bg-black border-0 text-white placeholder-gray-500 w-full hidden"
                         required
+                        onError={(e) => {
+                          toast({
+                            variant: "destructive",
+                            title: "File Upload Error",
+                            description: "Please try uploading a different image file.",
+                          });
+                        }}
                       />
-                      <span className="text-gray-500">Choose a file...</span>
+                      <span className="text-gray-300">
+                        {thumbnail ? thumbnail.name : "Choose a thumbnail..."}
+                      </span>
                     </div>
                   </div>
 

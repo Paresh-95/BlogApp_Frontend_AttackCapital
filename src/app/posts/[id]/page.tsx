@@ -143,7 +143,7 @@ export default function ShowBlogPage() {
             </div>
           )}
           <Card className="bg-black border-gray-800">
-            <CardContent className="prose prose-invert max-w-none pt-6 text-white">
+            <CardContent className="prose prose-invert max-w-none pt-6 text-white overflow-auto">
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </CardContent>
           </Card>

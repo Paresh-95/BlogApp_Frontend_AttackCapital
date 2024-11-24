@@ -195,22 +195,16 @@ export default function UserDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div
-                    className="text-gray-300 line-clamp-3 text-sm"
+                    className="text-gray-300 line-clamp-2 text-sm"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
                 </CardContent>
                 <CardFooter>
                   <p className="text-sm text-gray-400">By {post.author.name}</p>
                 </CardFooter>
-              </Card>
-              
-              
-              
-              
-              
+              </Card>            
               </Link>
-              
-            
+
             ))}
           </div>
         </div>
