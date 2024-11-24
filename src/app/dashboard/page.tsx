@@ -104,7 +104,7 @@ export default function UserDashboard() {
         );
 
         if (response.data.success) {
-          setBlogs(blogs.filter((blog) => blog._id !== postId));
+          setBlogs(blogs.filter((blog) => blog._id !== postId))
           toast({
             title: "Blog Deleted Successfully",
           });
@@ -181,12 +181,13 @@ export default function UserDashboard() {
           </h3>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {blogs.map((post, idx) => (
-              <Link key={idx} href={`/posts/${post._id}`} className="group">
+              
                 <Card
                   key={post._id}
                   className="h-full bg-black border-gray-800 overflow-hidden transition-transform duration-300 hover:scale-[1.02]"
                 >
                   <div className="relative aspect-video w-full overflow-hidden">
+                  <Link key={idx} href={`/posts/${post._id}`} className="group">
                     <Image
                       src={post.thumbnail}
                       alt={post.title}
@@ -194,11 +195,14 @@ export default function UserDashboard() {
                       objectFit="cover"
                       className="transition-transform duration-300 hover:scale-105"
                     />
+                     </Link>
                   </div>
                   <CardHeader className="flex flex-row justify-between items-start gap-4">
+                  <Link key={idx} href={`/posts/${post._id}`} className="group">
                     <h3 className="text-xl font-bold line-clamp-2 text-white">
                       {post.title}
                     </h3>
+                    </Link>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button
@@ -231,7 +235,7 @@ export default function UserDashboard() {
                     </p>
                   </CardFooter>
                 </Card>
-              </Link>
+        
             ))}
           </div>
         </div>
