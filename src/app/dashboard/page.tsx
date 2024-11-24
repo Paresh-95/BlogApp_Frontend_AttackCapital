@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -153,7 +152,7 @@ export default function UserDashboard() {
     <div className="min-h-screen bg-black text-white">
       <Header />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="flex flex-col sm:flex-row justify-between items-center  border-gray-800 pb-6 mt-24 mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-0">Welcome, {user.name}</h2>
           <Button
@@ -191,10 +190,6 @@ export default function UserDashboard() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className='' >
-                      <DropdownMenuItem onClick={() => handleEdit(post._id)}>
-                        <Edit className="mr-2 h-4 w-4" />
-                        <span>Edit</span>
-                      </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => handleDelete(post._id)}>
                         <Trash className="mr-2 h-4 w-4" />
                         <span>Delete</span>
@@ -204,6 +199,7 @@ export default function UserDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div
+                    className="text-gray-300 line-clamp-3 text-sm"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
                 </CardContent>
