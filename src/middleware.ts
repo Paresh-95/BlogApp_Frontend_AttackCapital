@@ -6,6 +6,8 @@ export async function middleware(req: NextRequest) {
   const cookiesList = await cookies();
   const token = cookiesList.get('token'); 
 
+  console.log("Token",token);
+  
   const { pathname } = req.nextUrl;
 
   const loginUrl = new URL('/login', req.url);
