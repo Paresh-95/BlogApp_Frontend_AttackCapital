@@ -11,7 +11,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // Track login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   let lastScrollY = 0
@@ -36,7 +36,6 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
-
   useEffect(() => {
     const fetchAuthState = async () => {
       try {
@@ -51,11 +50,27 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`,{ withCredentials: true })
-      setIsLoggedIn(false)
-      router.push('/')
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`,
+        {}, // Empty object as we're not sending any data in the body
+        { 
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+
+      if (response.data.success) {
+        setIsLoggedIn(false)
+        router.push('/')
+      } else {
+        console.error('Logout failed:', response.data.message)
+        // Optionally, show an error message to the user
+      }
     } catch (error) {
       console.error('Error during logout:', error)
+      // Optionally, show an error message to the user
     }
   }
 
@@ -127,3 +142,4 @@ function NavLink({ href, children, isActive, onClick }: { href: string; children
     </Link>
   )
 }
+
