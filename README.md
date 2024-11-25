@@ -31,18 +31,24 @@ Ensure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   #Clone frontend
+   git clone https://github.com/Paresh-95/BlogApp_Frontend_AttackCapital.git
+   cd AttackCaptial_BlogApp_FRONTEND
+
+
+    #Clone backend
+   git clone https://github.com/Paresh-95/BlogApp_Backend_AttackCapital.git
+   cd backend
    
 2. **Install dependencies for both frontend and backend**:
 
     ```bash
     Copy code
     # Install frontend dependencies 
-    cd frontend
+    cd AttackCaptial_BlogApp_FRONTEND
     npm install
     # Install backend dependencies
-    cd ../backend
+    cd backend
     npm install
 
 
@@ -51,7 +57,7 @@ Ensure you have the following installed:
     **Backend .env**:
 
     ```bash
-    PORT=5000
+    PORT=port
     JWT_SECRET=your_jwt_secret_key
     DB_URI=mongodb_altas_url
     CLOUDINARY_CLOUD_NAME=cloudinary_cloud_name
@@ -70,9 +76,7 @@ Ensure you have the following installed:
 
 5. **Create .env files in both frontend and backend folders with the following keys**:
 
-    ```bash
-    cd backend
-    npm start
+ 
 
 
 
@@ -80,6 +84,9 @@ Ensure you have the following installed:
 
     ```bash
     cd AttackCaptial_BlogApp_FRONTEND
+    npm run dev
+
+    cd backend
     npm run dev
 
 
@@ -113,13 +120,13 @@ Ensure you have the following installed:
 
 ### Authentication
 
-- **POST** `/api/auth/register`: Register a new user.
-- **POST** `/api/auth/login`: Login a user.
-- **POST** `/api/auth/logout`: Logout the user.
+- **POST** `/api/v1/auth/register`: Register a new user.
+- **POST** `/api/v1/auth/login`: Login a user.
+- **POST** `/api/v1/auth/logout`: Logout the user.
 
 ### User
 
-- **GET** `/api/user/profile`: Get user profile (protected).
+- **GET** `/api/v1/auth/use`: Get user profile (protected).
 
 ---
 
