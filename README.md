@@ -54,7 +54,7 @@ Ensure you have the following installed:
     PORT=5000
     JWT_SECRET=your_jwt_secret_key
     DB_URI=mongodb altas url
-    COOKIE_SECRET=your_cookie_secret 
+    
 
     
 4. **Backend .env**:
