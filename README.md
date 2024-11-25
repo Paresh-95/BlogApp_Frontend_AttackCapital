@@ -53,7 +53,11 @@ Ensure you have the following installed:
     ```bash
     PORT=5000
     JWT_SECRET=your_jwt_secret_key
-    DB_URI=mongodb altas url
+    DB_URI=mongodb_altas_url
+    CLOUDINARY_CLOUD_NAME=cloudinary_cloud_name
+    CLOUDINARY_API_KEY=cloudinary_api_key
+    CLOUDINARY_API_SECRET=cloudinary_api_secret
+    
     
 
     
@@ -61,7 +65,7 @@ Ensure you have the following installed:
 
     ```bash
     NEXT_PUBLIC_API_URL=http://localhost:5000/api
-
+    NEXT_PUBLIC_TINYMCE_API_KEY=tinymce_api_key
 
 
 5. **Create .env files in both frontend and backend folders with the following keys**:
