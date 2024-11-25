@@ -107,8 +107,9 @@ export default function Home() {
                 </h2>
                 <div
                   className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-gray-300 line-clamp-2"
-                  dangerouslySetInnerHTML={{ __html: featuredPost.content }}
-                />
+                  >
+                    {featuredPost.description}
+                  </div>
                 <p className="mt-4 text-lg sm:text-xl text-gray-400">
                   By {featuredPost.author.name}
                 </p>
