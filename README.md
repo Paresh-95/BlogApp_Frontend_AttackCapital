@@ -10,7 +10,7 @@ Welcome to the **Next.js Project with Express Backend and JWT Authentication**! 
 - **Express Backend**: A lightweight server handling API requests and authentication logic.
 - **JWT Authentication**: Secure token-based authentication.
 - **Cookie Handling**: Efficient session management using cookies.
-- **Scalable Architecture**: A clean separation of concerns for backend and frontend development.
+- **Scalable Architecture**: A clean separation of concern for backend and frontend development.
 
 ---
 
