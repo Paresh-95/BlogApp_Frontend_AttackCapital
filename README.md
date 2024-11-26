@@ -138,6 +138,9 @@ Ensure you have the following installed:
 
 ---
 
+## Issues During Deployment - Vercel Frontend
+   -- Unable to Retrieve Cookie (JWT Token) in Next.js Middleware in Production && Not able to Log out too
+
 ## Contributing
 
 Contributions are welcome! Follow these steps to contribute:
