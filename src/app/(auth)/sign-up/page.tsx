@@ -103,7 +103,7 @@ const RegisterPage = () => {
             <CardTitle className="text-5xl font-bold">Create an Account</CardTitle>
             <div className="flex justify-center items-center mt-2">
               <span className="text-lg text-gray-400">Already have an account?</span>
-              <Link href="/sign-in" className="ml-1 text-yellow-400 hover:underline">
+              <Link href="/login" className="ml-1 text-yellow-400 hover:underline">
                 Log In
               </Link>
             </div>
