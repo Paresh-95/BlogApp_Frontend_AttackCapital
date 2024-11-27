@@ -52,7 +52,7 @@ export default function Navbar() {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/logout`,
-        {}, // Empty object as we're not sending any data in the body
+        {}, 
         { 
           withCredentials: true,
           headers: {
@@ -91,7 +91,9 @@ export default function Navbar() {
           </div>
           <nav className="hidden md:flex items-center space-x-6">
             <NavLink href="/" isActive={pathname === '/'}>Home</NavLink>
-            <NavLink href="/dashboard" isActive={pathname === '/dashboard'}>Dashboard</NavLink>
+            {
+              isLoggedIn?(<NavLink href="/dashboard" isActive={pathname === '/dashboard'}>Dashboard</NavLink>):(<div></div>)
+            }
             {!isLoggedIn ? (
               <NavLink href="/login" isActive={pathname === '/login'}>Login</NavLink>
             ) : (
