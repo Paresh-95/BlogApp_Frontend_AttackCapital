@@ -4,14 +4,14 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   
-  const token = req.cookies.get('token')?.value
+  const token = req.cookies.get('token')?.value || req.cookies.get("_vcid")?.value
 
   console.log("Token", token)
 
   const loginUrl = new URL('/login', req.url)
   const dashboardUrl = new URL('/dashboard', req.url)
 
-  if (pathname.startsWith('/dashboard') && !token) {
+  if (pathname.startsWith('/dashboard') && !token) { 
     console.log('No token, redirecting to /login')
     loginUrl.searchParams.set('reason', 'unauthorized')
     return NextResponse.redirect(loginUrl)
