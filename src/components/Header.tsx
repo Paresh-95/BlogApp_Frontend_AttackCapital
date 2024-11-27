@@ -115,7 +115,10 @@ export default function Navbar() {
         <nav className="md:hidden bg-black">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <NavLink href="/" isActive={pathname === '/'} onClick={toggleMenu}>Home</NavLink>
-            <NavLink href="/dashboard" isActive={pathname === '/dashboard'} onClick={toggleMenu}>Dashboard</NavLink>
+            {
+              isLoggedIn?(<NavLink href="/dashboard" isActive={pathname === '/dashboard'} onClick={toggleMenu}>Dashboard</NavLink>):(<div></div>)
+            }
+            
             {!isLoggedIn ? (
               <NavLink href="/login" isActive={pathname === '/login'} onClick={toggleMenu}>Login</NavLink>
             ) : (
